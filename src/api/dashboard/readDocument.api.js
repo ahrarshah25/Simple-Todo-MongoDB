@@ -1,7 +1,7 @@
 import axiosInstance from "../axios";
 
 const readDocument = async (id, type = "getAllUsingID") => {
-    const response = await axiosInstance.post("http://localhost:8080/api/v1/crud/read-document", {
+    const response = await axiosInstance.post("https://backend-mongodb-basic-crud.vercel.app/api/v1/crud/read-document", {
         id,
         type
     });

@@ -1,7 +1,7 @@
 import axiosInstance from "../axios";
 
 const checkAuth = async () => {
-    const response = await axiosInstance.get('http://localhost:5000/api/v1/auth/check-auth', {
+    const response = await axiosInstance.get('https://backend-mongodb-simple-auth.vercel.app/api/v1/auth/check-auth', {
         credentials: "include"
     });
     return response.data?.user;
