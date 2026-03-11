@@ -8,7 +8,7 @@ const UpdateModal = ({ isOpen, onClose, document, onUpdate }) => {
 
   useEffect(() => {
     if (document) {
-      setTitle(document.title);
+      setTitle(document.document);
     }
   }, [document]);
 
@@ -17,6 +17,7 @@ const UpdateModal = ({ isOpen, onClose, document, onUpdate }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onUpdate({ ...document, title });
+    
     onClose();
   };
 

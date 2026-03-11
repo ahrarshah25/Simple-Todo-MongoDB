@@ -5,7 +5,7 @@ import Input from '../Components/Auth/Input';
 import Swal from "sweetalert2";
 import emailValidator from '../helpers/emailValidator';
 import signup from "../api/auth/signup.api";
-import authRedictHandler from '../handlers/authRedictHandler';
+// import authRedictHandler from '../handlers/authRedictHandler';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +15,8 @@ const Signup = () => {
     confirmPassword: '',
   });
 
-  authRedictHandler();
+  // authRedictHandler();
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;

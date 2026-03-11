@@ -3,12 +3,13 @@ import DashboardLayout from '../Components/Dashboard/Layout/DashboardLayout';
 import Overview from './Dashboard/Overview';
 import AddDocument from './Dashboard/AddDocument';
 import YourDocuments from './Dashboard/YourDocuments';
-import dashboardRedictHandler from '../handlers/dashboardRedictHandler';
+// import dashboardRedictHandler from '../handlers/dashboardRedictHandler';
 
 const Dashboard = () => {
   const [activePage, setActivePage] = useState('overview');
   
-  dashboardRedictHandler();
+  // dashboardRedictHandler();
+  
 
   const renderPage = () => {
     switch (activePage) {

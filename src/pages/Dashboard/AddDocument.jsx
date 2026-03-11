@@ -1,13 +1,44 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Input from '../../Components/Auth/Input';
 import Button from '../../Components/LandingPage/Navbar/Button';
+import { UserDataContext } from "../../context/DashboardUserContext";
+import Swal from "sweetalert2";
+import addDoc from '../../api/dashboard/addDocument.api';
 
 const AddDocument = () => {
   const [title, setTitle] = useState('');
+  const user = useContext(UserDataContext);
 
-  const handleSubmit = (e) => {
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Adding document:', title);
+    if(!title) {
+      Swal.fire({
+        title: "Empty Fields",
+        text: "Please fill all the fields",
+        icon: "error"
+      });
+      return;
+    }
+    try {
+      const res = await addDoc(user._id, title);
+    
+      if(res.status === 200) {
+        Swal.fire({
+          title: "Document Added",
+          text: "Document added successfully",
+          icon: "success"
+        });
+      }
+    } catch (error) {
+      console.log(error)
+      Swal.fire({
+        title: "Error",
+        text: "Something went wrong",
+        icon: "error"
+      });
+    }
     setTitle('');
   };
 

@@ -1,9 +1,10 @@
 import axiosInstance from "../axios";
 
 const deleteDocument = async (id) => {
-    axiosInstance.post('https://backend-mongodb-basic-crud.vercel.app/api/v1/crud/delete-document', {
+    const response = axiosInstance.post('http://localhost:8080/api/v1/crud/delete-document', {
         id
     });
+    return response;
 }
 
 export default deleteDocument;

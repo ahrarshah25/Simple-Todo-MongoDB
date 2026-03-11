@@ -1,22 +1,11 @@
 import { Bell, User } from "lucide-react";
-import authUserCheck from "../../../utils/checkAuth";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { UserDataContext } from "../../../context/DashboardUserContext";
 
 const Header = () => {
 
-  const [currentUser, setCurrentUser] = useState({});
-
-  useEffect(() => {
-    const getUser = async () => {
-      const auth = await authUserCheck();
-      setCurrentUser(auth)
-    };
-    getUser();
-  }, []);
-
-  const user = currentUser.data?.user
-  console.log(user)
-
+  const user = useContext(UserDataContext);
+  
   return (
     <header className="bg-gray-800 border-b border-gray-700 h-16 flex items-center justify-end px-6">
       <div className="flex items-center space-x-4">
@@ -30,7 +19,7 @@ const Header = () => {
           <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center">
             <User size={18} className="text-gray-300" />
           </div>
-          <span className="text-sm font-medium text-white"></span>
+          <span className="text-sm font-medium text-white">{user.name}</span>
         </div>
       </div>
     </header>

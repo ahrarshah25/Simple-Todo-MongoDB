@@ -1,4 +1,7 @@
 import { LayoutDashboard, FilePlus, Files, LogOut } from 'lucide-react';
+import { Navigate } from "react-router-dom";
+import logout from "../../../api/auth/logout.api";
+import Swal from "sweetalert2"
 
 const Sidebar = ({ activePage, setActivePage }) => {
   const menuItems = [
@@ -6,6 +9,17 @@ const Sidebar = ({ activePage, setActivePage }) => {
     { id: 'add', label: 'Add Document', icon: FilePlus },
     { id: 'documents', label: 'Your Documents', icon: Files },
   ];
+
+  const logoutUser = async () => {
+    const res = await logout();
+    if(res.data?.success) {
+      Swal.fire({
+        title: "Logout Successfully",
+        text: "Logout Successfully!",
+        icon: "success"
+      }).then(() => { window.location.href = "/login" })
+    }
+  }
 
   return (
     <aside className="w-64 bg-gray-800 border-r border-gray-700 flex flex-col h-full">
@@ -34,7 +48,7 @@ const Sidebar = ({ activePage, setActivePage }) => {
         })}
       </nav>
       <div className="p-4 border-t border-gray-700">
-        <button className="w-full flex items-center space-x-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition">
+        <button onClick={logoutUser} className="w-full flex items-center space-x-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition">
           <LogOut size={20} />
           <span>Logout</span>
         </button>
